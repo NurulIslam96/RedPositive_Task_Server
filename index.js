@@ -88,11 +88,10 @@ app.post("/sendMail", async(req,res)=>{
                 host: "smtp.gmail.com"
             })
             .sendMail(msg, (err)=>{
-                res.send({status: "Email Sent Successfully"})
                 if(err){
                     return console.log(err)
                 }else{
-                    return console.log("Email sent")
+                    return res.send({status: "Email Sent Successfully"})
                 }
             })
         }
