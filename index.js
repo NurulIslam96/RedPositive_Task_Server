@@ -57,6 +57,19 @@ app.delete("/delete/:id", async(req,res)=>{
     }
 })
 
+app.put("/updateEntry/:id", async(req,res)=>{
+    try {
+        const filter = {_id: ObjectId(req.params.id)}
+        const updatedDoc = {
+            $set: req.body
+        }
+        const result = await usersCollection.updateOne(filter, updatedDoc);
+        res.send({result, status: "User Edited Successfully"})
+    } catch (error) {
+        console.log(error.message)
+    }
+})
+
 app.post("/sendMail", async(req,res)=>{
     try {
         let idCollection = []
